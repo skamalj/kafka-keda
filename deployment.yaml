@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: kafka-keda
+  name: kafka-keda
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka-keda
+  template:
+    metadata:
+      labels:
+        app: kafka-keda
+    spec:
+      containers:
+      - image: <imagename>
+        name: kafka-keda
+        env:
+          - name: KAFKA_BROKERS
+            value: <Broker hosts>
+          - name: KAFKA_USERNAME
+            value: <API Key user>
+          - name: KAFKA_PASSWORD
+            value: <API Key password>
+          - name: KAFKA_TOPIC
+            value: kedaongke
+          - name: INTERVAL
+            value: "20"
+          - name: GROUP_ID
+            value: "group-8"
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "129Mi"
+          limits:
+            cpu: "100m"
+            memory: "129Mi"
+            
+
+
+
